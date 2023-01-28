@@ -21,7 +21,7 @@ This is experimental framework for generating tests on the fly. The main purpose
 ## Installation
 
 ```
-pip install git+httpshttps://github.com/PeterWaIIace/BlackBoxTesting
+pip install git+https://github.com/PeterWaIIace/BlackBoxTesting
 ```
 
 ## Examples of usage:
