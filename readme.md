@@ -39,8 +39,8 @@ Example of JSON defining tests:
 ```
 Example of code:
 ```
-    bbTest = BBTest()
-    report = bbTest.generateTests('tests/test_file_python.py','tests/testing_file_for_file_scanner.json')
+bbTest = BBTest()
+report = bbTest.generateTests('tests/test_file_python.py','tests/testing_file_for_file_scanner.json')
 
 ```
 
