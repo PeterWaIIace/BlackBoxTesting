@@ -1,5 +1,6 @@
 # WIP
 import subprocess
+import json
 import os
 
 BB_ENV_NAME = "./BlackBoxShadowRealm/"
@@ -32,17 +33,21 @@ class BBManager:
 
 class BBTest:
 
-    def __init__(self,envFileName="python_test_env.py"):
+    def __init__(self):
         self.ptrFuncBody       = "<TESTED_FUNCTION_BODY>"
         self.ptrFuncInvocation = "<TESTED_FUNCTION_CALLS>"
         self.ptrInputs         = "<TEST_INPUTS>"
         self.ptrOutputs        = "<TEST_OUTPUTS>"
 
         self.envFilePath = BB_ENV_NAME
-        self.envFileName = envFileName
+        self.envFileName = "python_test_env.py"
         self.envBaseFileName = "environmentBase.py"
 
         self.fullPathToBase = self.envFilePath + "/" + self.envBaseFileName
+        self.fullPathToTest = self.envFilePath + "/" + self.envFileName
+
+    def __setEnvFilename(self,envFileName):
+        self.envFileName = f"gen_test_{envFileName}.py"
         self.fullPathToTest = self.envFilePath + "/" + self.envFileName
 
     def __inputListToStr(self,inputs=[],n=0):
@@ -59,7 +64,21 @@ class BBTest:
 
         return allInputs
 
-    def scanAndGenerateTest(self,testsFileName):
+    def scanAndGenerateTest(self,targetFileName,testsFileName,funcName):
+        ## TO DO: write code which opens file and reads json and generate tests
+        inputs  = []
+        outputs = []
+        with open(testsFileName, "r") as fTestDef:
+            jTestDef = json.load(fTestDef)
+            inputs = jTestDef[funcName]["inputs"]
+            outputs = jTestDef[funcName]["outputs"]
+
+        fScan  = FileScanner()
+        funcObj = fScan.scanFile(targetFileName,funcName)
+
+        self.__setEnvFilename(funcName)
+        self.generateTest(funcName,funcObj.code,inputs,outputs)
+
         pass
 
     def generateTest(self,params={}):
@@ -67,6 +86,8 @@ class BBTest:
         funcBody=params["funcBody"]
         inputs = params["inputs"]
         outputs= params["outputs"]
+
+        self.__setEnvFilename(funcName)
 
         self.inputs  = inputs
         self.outputs = outputs
@@ -104,6 +125,8 @@ class BBTest:
         self.inputs   = inputs
         self.outputs  = outputs
         self.funcName = funcName
+
+        self.__setEnvFilename(funcName)
 
         fileContent = ""
 
@@ -164,14 +187,14 @@ class BBTest:
             else:
                 report[n] = {"funcName":self.funcName,"inputs":[],"outputs":self.outputs,"pass":results[n]}
 
-        return report,not error
+        return {"report" : report, "system error" : error}
 
 class FunctionObject:
 
-    def __init__(self,functionName,startLine):
+    def __init__(self,funcName,startLine):
         self.stopLine = 0
         self.startLine = startLine
-        self.functionName = functionName
+        self.funcName = funcName
         self.code         = ''
 
     def setStartLine(self,startLine):
