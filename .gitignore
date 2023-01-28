@@ -3,3 +3,4 @@ BlackBoxShadowRealm/*
 *.pyc
 build/*
 BlackBoxFramework.egg-info/*
+src/BlackBoxFramework.egg-info/*

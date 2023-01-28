@@ -1,4 +1,4 @@
-from src.BlackBoxManager import BBTest
+from BlackBoxManager import BBTest
 
 if __name__=="__main__":
 

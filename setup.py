@@ -7,5 +7,5 @@ setup(name='BlackBoxFramework',
       author='PetterWaIIace',
       url='https://github.com/PeterWaIIace/BlackBoxTesting',
       package_dir={'': 'src'},
-      package=['BlackBoxManager']
+      packages=['']
     )
