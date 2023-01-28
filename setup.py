@@ -6,5 +6,6 @@ setup(name='BlackBoxFramework',
       description='Generative Testing Framework for zero code applications',
       author='PetterWaIIace',
       url='https://github.com/PeterWaIIace/BlackBoxTesting',
-      package_dir={'BlackBox': 'src'}
+      package_dir={'BlackBox': 'src'},
+      package=['BlackBox']
     )
