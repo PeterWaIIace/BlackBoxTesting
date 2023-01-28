@@ -29,8 +29,6 @@ class BBManager:
         with open(self.baseFileName,"w") as f:
             f.write(self.baseFile)
 
-        print("Created")
-
 class BBTest:
 
     def __init__(self):
@@ -189,6 +187,19 @@ class BBTest:
 
         return {"report" : report, "system error" : error}
 
+    def generateTests(self,targetCode="<SOURCE_CODE_TO_TEST>",filename="<JSON_FILE_WITH_TESTS_DEFS>"):
+
+        functionsToTest = []
+        with open(filename,"r") as f:
+            fJson = json.load(f)
+            functionsToTest = fJson.keys()
+
+        reports = {}
+        for funcName in functionsToTest:
+            self.scanAndGenerateTest(targetCode,filename,funcName)
+            reports[funcName] = self.runTest()
+
+        return reports
 class FunctionObject:
 
     def __init__(self,funcName,startLine):

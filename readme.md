@@ -15,6 +15,24 @@ This is experimental framework [WIP] for generating tests on the fly. The main p
 
 [WIP]
 
+1) Run tests based on target file and tests definition JSON:
+
+Example of JSON defining tests:
+```
+
+{
+    "func1":{"inputs": [[1,1],[2,2],[3,3]], "outputs": [5,8,11]},
+    "func3":{"inputs": [[1,1],[4,2],[4,3]], "outputs": [9,16,17]}
+}
+
+```
+Example of code:
+```
+    bbTest = BBTest()
+    report = bbTest.generateTests('tests/test_file_python.py','tests/testing_file_for_file_scanner.json')
+
+```
+
 1) Run in code test based on passed parameters (functionName, functionBody, Inputs, ExpOutputs)
 
 ```
@@ -26,7 +44,7 @@ report = bbTest.runTest()
 
 ```
 
-2) Scan source code file and run test based on parameters in json (functionName, Inputs, ExpOutputs):
+3) Scan source code file and run test based on parameters in json (functionName, Inputs, ExpOutputs):
 
 ```
 

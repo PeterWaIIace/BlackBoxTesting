@@ -1,10 +1,4 @@
 {
     "func1":{"inputs": [[1,1],[2,2],[3,3]], "outputs": [5,8,11]},
-    "func2":{"inputs": [], "outputs": []},
-    "func3":{"inputs": [[1,1],[4,2],[4,3]], "outputs": [9,16,17]},
-    "func4":{"inputs": [], "outputs": []},
-    "func5":{"inputs": [], "outputs": []},
-    "func6":{"inputs": [], "outputs": []},
-    "func7":{"inputs": [], "outputs": []},
-    "func8":{"inputs": [], "outputs": []}
+    "func3":{"inputs": [[1,1],[4,2],[4,3]], "outputs": [9,16,17]}
 }
