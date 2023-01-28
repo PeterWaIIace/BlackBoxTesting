@@ -11,11 +11,11 @@ This is experimental framework [WIP] for generating tests on the fly. The main p
 
 [WIP]
 
-## Example of usage:
+## Examples of usage:
 
 [WIP]
 
-1) Run tests based on target file and tests definition JSON:
+#### Run tests based on target file and tests definition JSON:
 
 Example of JSON defining tests:
 ```
@@ -33,7 +33,7 @@ Example of code:
 
 ```
 
-1) Run in code test based on passed parameters (functionName, functionBody, Inputs, ExpOutputs)
+####  Run in code test based on passed parameters (functionName, functionBody, Inputs, ExpOutputs)
 
 ```
 
@@ -44,7 +44,7 @@ report = bbTest.runTest()
 
 ```
 
-3) Scan source code file and run test based on parameters in json (functionName, Inputs, ExpOutputs):
+####  Scan source code file and run test based on parameters in json (functionName, Inputs, ExpOutputs):
 
 ```
 
