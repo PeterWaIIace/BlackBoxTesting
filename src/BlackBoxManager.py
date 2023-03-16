@@ -2,6 +2,7 @@
 import subprocess
 import json
 import os
+import re
 
 BB_ENV_NAME = "./BlackBoxShadowRealm/"
 class BBManager:
@@ -225,6 +226,33 @@ class FileScanner:
     def __init__(self):
         pass
 
+    def findFunction(line):
+        functionName = None
+
+        if "def" in line:
+            start = line.find("def ")
+            end = line.find("(")
+            functionName = line[start:end]
+
+        return functionName
+
+    def scanFunctions(self,fileName=None):
+        funcObj = None
+        line = "dummy"
+
+        if not fileName:
+            return None
+
+        funcNames = []
+        with open(fileName, 'r') as fileObject:
+            while len(line) != 0:
+                line = fileObject.readline()
+                funcName = findFunction(line)
+                if funcName:
+                    funcNames.append(funcName)
+
+        return funcNames
+
     def scanFile(self,fileName=None,funcName=None):
         funcObj = None
 
@@ -254,7 +282,6 @@ class FileScanner:
 
                 else:
                     funcObj.appendLine(line)
-
 
             line_num += 1
 

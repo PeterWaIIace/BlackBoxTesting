@@ -1,4 +1,8 @@
-from BlackBoxManager import BBTest
+import sys
+import os
+sys.path.append(os.path.abspath('..'))
+
+from src.BlackBoxManager import BBTest
 
 if __name__=="__main__":
 
